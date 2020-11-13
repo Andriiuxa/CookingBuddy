@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 });
 
 const StyledText: React.FC<Props> = ({ children, style }) => (
-  <Text style={Object.assign(styles.text, style)}>{children}</Text>
+  <Text style={StyleSheet.compose(styles.text, style as any)}>{children}</Text>
 );
 
 export default StyledText;
