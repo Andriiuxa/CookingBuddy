@@ -1,4 +1,4 @@
 import React from "react";
-import Home from "./Pages/Home";
+import Home from "./pages/Home";
 
 export default () => <Home />;
