@@ -7,22 +7,25 @@ import {
   TouchableOpacity,
   SafeAreaView,
   FlatList,
+  Dimensions,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Text from "../Text";
 import ListItem from "./ListItem";
 import { Item } from "../../types";
 
+const height = Dimensions.get("window").height;
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: height - 66,
   },
   buttonContainer: {
+    position: "absolute",
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 20,
-    marginTop: 20,
+    bottom: 10,
   },
   buttonGradient: {
     width: 100,
@@ -68,6 +71,14 @@ const ShoppingList: React.FC = () => {
     setItems([...items]);
   };
 
+  const onSubmitEditing = (id: string, text: string) => {
+    if (text === "") {
+      removeItem(id);
+    } else {
+      saveData();
+    }
+  };
+
   const saveData = async () => {
     try {
       const jsonValue = JSON.stringify(items);
@@ -77,12 +88,11 @@ const ShoppingList: React.FC = () => {
     }
   };
 
-  const renderItem = (item: Item) => {};
-
   return (
     <>
       <SafeAreaView style={styles.container}>
         <FlatList
+          style={{ marginBottom: 20 }}
           data={items}
           renderItem={({ item }) => (
             <ListItem
@@ -90,23 +100,25 @@ const ShoppingList: React.FC = () => {
               item={item}
               removeItem={removeItem}
               onChange={onChange}
+              onSubmitEditing={onSubmitEditing}
             />
           )}
           keyExtractor={(item: Item) => item.id}
         />
+
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity onPress={addItem}>
+            <LinearGradient
+              style={styles.buttonGradient}
+              colors={["#FF8552", "#FFA985"]}
+              start={[0, 0]}
+              end={[1, 1]}
+            >
+              <Text>Add Item</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+        </View>
       </SafeAreaView>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={addItem}>
-          <LinearGradient
-            style={styles.buttonGradient}
-            colors={["#00d4ff", "#ff00ea"]}
-            start={[0, 0]}
-            end={[1, 1]}
-          >
-            <Text>Add Item</Text>
-          </LinearGradient>
-        </TouchableOpacity>
-      </View>
     </>
   );
 };
