@@ -25,12 +25,12 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    bottom: 10,
+    bottom: 50
   },
   buttonGradient: {
     width: 100,
     height: 50,
-    borderRadius: 30,
+    borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
   },

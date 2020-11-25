@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { View, TouchableOpacity, StyleSheet, TextInput } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     margin: 12,
-    borderRadius: 30,
+    borderRadius: 20,
   },
   textInput: {
     fontSize: 20,
@@ -37,7 +37,6 @@ const ListItem: React.FC<Props> = ({
   onChange,
   onSubmitEditing,
 }) => {
-  const ref = useRef(null);
   return (
     <View>
       <LinearGradient
@@ -47,10 +46,9 @@ const ListItem: React.FC<Props> = ({
         end={[1, 1]}
       >
         <TextInput
-          ref={ref}
+          autoCorrect={false}
           autoFocus={true}
           style={styles.textInput}
-          pointerEvents="none"
           value={item.name}
           onChangeText={(text) => {
             onChange(item.id, text);
