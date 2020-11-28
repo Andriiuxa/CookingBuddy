@@ -18,14 +18,22 @@ const height = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
   container: {
-    height: height - 66,
+    height: height - 166,
   },
   buttonContainer: {
     position: "absolute",
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    bottom: 50
+    bottom: 25,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   buttonGradient: {
     width: 100,
@@ -105,20 +113,19 @@ const ShoppingList: React.FC = () => {
           )}
           keyExtractor={(item: Item) => item.id}
         />
-
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={addItem}>
-            <LinearGradient
-              style={styles.buttonGradient}
-              colors={["#FF8552", "#FFA985"]}
-              start={[0, 0]}
-              end={[1, 1]}
-            >
-              <Text>Add Item</Text>
-            </LinearGradient>
-          </TouchableOpacity>
-        </View>
       </SafeAreaView>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity onPress={addItem}>
+          <LinearGradient
+            style={styles.buttonGradient}
+            colors={["#FF8552", "#FFA985"]}
+            start={[0, 0]}
+            end={[1, 1]}
+          >
+            <Text>Add Item</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      </View>
     </>
   );
 };

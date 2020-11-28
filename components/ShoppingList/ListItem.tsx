@@ -12,6 +12,16 @@ interface Props {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
   itemContainer: {
     flexDirection: "row",
     height: 50,
@@ -38,7 +48,7 @@ const ListItem: React.FC<Props> = ({
   onSubmitEditing,
 }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <LinearGradient
         colors={["#297373", "#85FFC7"]}
         style={styles.itemContainer}
